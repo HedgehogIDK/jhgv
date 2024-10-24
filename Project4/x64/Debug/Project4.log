@@ -1,0 +1,26 @@
+﻿  PhoneBook.cpp
+  Source.cpp
+C:\Users\307k12\source\repos\Project4\PhoneBook.h(13,16): error C2143: синтаксическая ошибка: отсутствие ";" перед "]"
+  (компиляция исходного файла "PhoneBook.cpp")
+  
+C:\Users\307k12\source\repos\Project4\PhoneBook.h(13,17): error C2238: непредвиденные лексемы перед ";"
+  (компиляция исходного файла "PhoneBook.cpp")
+  
+C:\Users\307k12\source\repos\Project4\PhoneBook.h(49,10): error C2440: return: невозможно преобразовать "char [12]" в "int"
+  (компиляция исходного файла "PhoneBook.cpp")
+      C:\Users\307k12\source\repos\Project4\PhoneBook.h(49,10):
+      Не существует контекста, в котором такое преобразование возможно
+  
+C:\Users\307k12\source\repos\Project4\PhoneBook.cpp(5,13): error C3863: тип массива "char [12]" является неназначаемым
+C:\Users\307k12\source\repos\Project4\PhoneBook.h(13,16): error C2143: синтаксическая ошибка: отсутствие ";" перед "]"
+  (компиляция исходного файла "Source.cpp")
+  
+C:\Users\307k12\source\repos\Project4\PhoneBook.h(13,17): error C2238: непредвиденные лексемы перед ";"
+  (компиляция исходного файла "Source.cpp")
+  
+C:\Users\307k12\source\repos\Project4\PhoneBook.h(49,10): error C2440: return: невозможно преобразовать "char [12]" в "int"
+  (компиляция исходного файла "Source.cpp")
+      C:\Users\307k12\source\repos\Project4\PhoneBook.h(49,10):
+      Не существует контекста, в котором такое преобразование возможно
+  
+  Создание кода...
