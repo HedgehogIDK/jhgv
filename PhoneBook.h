@@ -17,8 +17,23 @@ class PhoneBook
 public:
 	PhoneBook() : fullName{ nullptr }, Info{ "\0" }, homePhone{ "\0" }, workPhone{ "\0" }, mobilePhone{ "\0" } {}
 
+	PhoneBook(const PhoneBook& PhoneBook_p) {
+		if (PhoneBook_p.fullName) {
+			fullName = new char[strlen(PhoneBook_p.fullName) + 1];
+			strcpy_s(fullName, strlen(PhoneBook_p.fullName) + 1, PhoneBook_p.fullName);
+		}
+		else {
+			fullName = nullptr;
+		}
+
+		strcpy_s(homePhone, PhoneBook_p.homePhone);
+		strcpy_s(workPhone, PhoneBook_p.workPhone);
+		strcpy_s(mobilePhone, PhoneBook_p.mobilePhone);
+		strcpy_s(Info, PhoneBook_p.Info);
+	}
+
 	//константные параметры могут принимать как константные, так и неконстантные параметы
-	void set_Information(char* Info_p) {
+	void set_Information(const char* Info_p) {
 		strcpy_s(Info, Info_p);
 	}
 
@@ -31,13 +46,17 @@ public:
 		strcpy_s(fullName, strlen(fullName_p) + 1, fullName_p);
 	}
 
-	void set_homePhone(char* Phone) {
+	void set_homePhone(const char* Phone) {
 		strcpy_s(homePhone, Phone);
 	};
 
-	void set_workPhone(char* Phone);
+	void set_workPhone(const char* Phone) {
+		strcpy_s(workPhone, Phone);
+	}
 
-	void set_mobilePhone(char* Phone);
+	void set_mobilePhone(const char* Phone) {
+		strcpy_s(mobilePhone, Phone);
+	}
 	
 	const char* get_Information() const {
 		return Info;
@@ -55,7 +74,7 @@ public:
 		return workPhone;
 	}
 
-	const char* get_mobilePhone() {
+	const char* get_mobilePhone() const {
 		return mobilePhone;
 	}
 

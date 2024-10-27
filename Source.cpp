@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void creat(int num, PhoneBook* Phone);
+PhoneBook* creat(int num);
 void addCont(PhoneBook PhBook[], int& num);
 void delCon(PhoneBook PhBook[], int& num);
 void display(PhoneBook PhBook[], int& num);
@@ -12,8 +12,6 @@ int main() {
 	setlocale(LC_ALL, "RUS");
 
 	int menu;
-	int buffer;
-	char buffer_Str[100];
 	int num;
 	PhoneBook* Phone;
 
@@ -27,47 +25,11 @@ int main() {
 		return 0;
 	}
 
-	Phone = new PhoneBook[num];
-
-	
-
-	for (int i = 0;i < num;i++) {
-
-		cout << "Введите ФИО: ";
-		cin.ignore();
-
-		gets_s(buffer_Str);
-
-		Phone[num].set_fullName(buffer_Str);
-
-		cout << "\nВведите домашний телефон: ";
-		cin >> buffer;
-
-		Phone[num].set_homePhone(buffer);
-
-		cout << "\nВведите мобильный телефон: ";
-		cin >> buffer;
-
-		Phone[num].set_mobilePhone(buffer);
-
-		cout << "\nВведите рабочий телефон: ";
-		cin >> buffer;
-
-		Phone[num].set_workPhone(buffer);
-
-		cout << "\nВведите доп. информацию: ";
-		cin.ignore();
-
-		gets_s(buffer_Str);
-
-		Phone[num].set_Information(buffer_Str);
-	}
-
-
+	Phone = creat(num);
 
 	do {
 
-		cout << "1 Добавить нового абонента\n2 Удалить абонента\n3 Искать абонентов по ФИО\n4 Показывать всех абонентов\n5 Сохранить информацию в файл\n6 Загрузить файл\n0 - Выход\nВведите: ";
+		cout << "\n1 Добавить нового абонента\n2 Удалить абонента\n3 Искать абонентов по ФИО\n4 Показывать всех абонентов\n5 Сохранить информацию в файл\n6 Загрузить файл\n0 - Выход\nВведите: ";
 		cin >> menu;
 
 		switch (menu)
@@ -117,84 +79,80 @@ int main() {
 
 void addCont(PhoneBook PhBook[], int& num) {
 	PhoneBook* Phone =  new PhoneBook[num + 1];
-	int buffer;
-	char buffer_Str[100];
+	char buffer[100];
 
 	for (int i = 0;i < num;i++) {
-		Phone[i].set_fullName(PhBook[i].get_fullName());
+		Phone[i] = PhBook[i];
 	}
 
 	num++;
 
-	cout << "Введите ФИО: ";
-	cin.ignore();
+	printf( "Введите ФИО: ");
+	gets_s(buffer);
 
-	gets_s(buffer_Str);
+	Phone[num].set_fullName(buffer);
 
-	Phone[num].set_fullName(buffer_Str);
-
-	cout << "\nВведите домашний телефон: ";
-	cin >> buffer;
+	printf("\nВведите домашний телефон: ");
+	gets_s(buffer);
 
 	Phone[num].set_homePhone(buffer);
 
-	cout << "\nВведите мобильный телефон: ";
-	cin >> buffer;
+	printf("\nВведите мобильный телефон: ");
+	gets_s(buffer);
 
 	Phone[num].set_mobilePhone(buffer);
 
-	cout << "\nВведите рабочий телефон: ";
-	cin >> buffer;
+	printf("\nВведите рабочий телефон: ");
+	gets_s(buffer);
 
 	Phone[num].set_workPhone(buffer);
 
-	cout << "\nВведите доп. информацию: ";
-	cin.ignore();
+	printf("\nВведите доп. информацию: ");
+	gets_s(buffer);
 
-	gets_s(buffer_Str);
+	Phone[num].set_Information(buffer);
 
-	Phone[num].set_Information(buffer_Str);
+	delete[] PhBook;
 
 	PhBook = Phone;
 }
 
-void creat(int num, PhoneBook* Phone) {
-	Phone =  new PhoneBook[num];
+PhoneBook* creat(int num) {
+	PhoneBook* Phone =  new PhoneBook[num];
 
-	int buffer;
-	char buffer_Str[100];
+	char buffer[100];
 
 	for (int i = 0;i < num;i++) {
 
-		cout << "Введите ФИО: ";
+		printf("Введите ФИО: ");
 		cin.ignore();
 
-		gets_s(buffer_Str);
+		gets_s(buffer);
 
-		Phone[num].set_fullName(buffer_Str);
+		Phone[i].set_fullName(buffer);
 
-		cout << "\nВведите домашний телефон: ";
-		cin >> buffer;
+		printf("Введите домашний телефон: ");
+		gets_s(buffer);
 
-		Phone[num].set_homePhone(buffer);
+		Phone[i].set_homePhone(buffer);
 
-		cout << "\nВведите мобильный телефон: ";
-		cin >> buffer;
+		printf("Введите мобильный телефон: ");
+		gets_s(buffer);
 
-		Phone[num].set_mobilePhone(buffer);
+		Phone[i].set_mobilePhone(buffer);
 
-		cout << "\nВведите рабочий телефон: ";
-		cin >> buffer;
+		printf("Введите рабочий телефон: ");
+		gets_s(buffer);
 
-		Phone[num].set_workPhone(buffer);
+		Phone[i].set_workPhone(buffer);
 
-		cout << "\nВведите доп. информацию: ";
-		cin.ignore();
+		printf("Введите доп. информацию: ");
+		gets_s(buffer);
 
-		gets_s(buffer_Str);
-
-		Phone[num].set_Information(buffer_Str);
+		Phone[i].set_Information(buffer);
 	}
+
+	return Phone;
 }
 
 void delCon(PhoneBook PhBook[], int& num) {
@@ -204,11 +162,13 @@ void delCon(PhoneBook PhBook[], int& num) {
 		Phone[i] = PhBook[i];
 	}
 
+	delete[] PhBook;
+
 	PhBook = Phone;
 }
 
 void display(PhoneBook PhBook[], int& num) {
 	for (int i = 0;i < num;i++) {
-		cout << "\nФИО: " << PhBook[i].get_fullName() << "\nДомашний телефон: " << PhBook[i].get_homePhone() << "\nМобильный телефон: " << PhBook[i].get_mobilePhone() << "\nРабочий телефон: " << PhBook[i].get_workPhone() << "\nДоп. информация: " << PhBook[i].get_Information();
+		printf("\nФИО: %s\nМобильный телефон: %s\nДомашний телефон: %s\nРабочий телефон: %s\nДоп. информация: %s\n", PhBook[i].get_fullName(),PhBook[i].get_mobilePhone(), PhBook[i].get_homePhone(),PhBook[i].get_workPhone(),PhBook[i].get_Information());
 	}
 }
