@@ -11,8 +11,8 @@ void display(PhoneBook PhBook[], int& num);
 int main() {
 	setlocale(LC_ALL, "RUS");
 
-	int menu;
-	int num;
+	int menu, num;
+
 	PhoneBook* Phone;
 
 
@@ -82,7 +82,11 @@ void addCont(PhoneBook PhBook[], int& num) {
 	char buffer[100];
 
 	for (int i = 0;i < num;i++) {
-		Phone[i] = PhBook[i];
+		Phone[i].set_fullName(PhBook[i].get_fullName());
+		Phone[i].set_homePhone(PhBook[i].get_homePhone());
+		Phone[i].set_Information(PhBook[i].get_Information());
+		Phone[i].set_mobilePhone(PhBook[i].get_mobilePhone());
+		Phone[i].set_workPhone(PhBook[i].get_workPhone());
 	}
 
 	num++;
@@ -159,7 +163,11 @@ void delCon(PhoneBook PhBook[], int& num) {
 	PhoneBook* Phone = new PhoneBook[num--];
 
 	for (int i = 0;i < num;i++) {
-		Phone[i] = PhBook[i];
+		Phone[i].set_fullName(PhBook[i].get_fullName());
+		Phone[i].set_homePhone(PhBook[i].get_homePhone());
+		Phone[i].set_Information(PhBook[i].get_Information());
+		Phone[i].set_mobilePhone(PhBook[i].get_mobilePhone());
+		Phone[i].set_workPhone(PhBook[i].get_workPhone());
 	}
 
 	delete[] PhBook;
