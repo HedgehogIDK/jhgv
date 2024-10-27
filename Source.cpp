@@ -4,8 +4,8 @@
 using namespace std;
 
 PhoneBook* creat(int num);
-void addCont(PhoneBook PhBook[], int& num);
-void delCon(PhoneBook PhBook[], int& num);
+PhoneBook* addCont(PhoneBook PhBook[], int num);
+PhoneBook* delCon(PhoneBook PhBook[], int& num);
 void display(PhoneBook PhBook[], int& num);
 
 int main() {
@@ -40,12 +40,14 @@ int main() {
 			break;
 
 		case 1:
-			addCont(Phone, num);
+			Phone = addCont(Phone, num);
+
+			num++;
 
 			break;
 
 		case 2:
-			delCon(Phone, num);
+			Phone = delCon(Phone, num);
 
 			break;
 
@@ -77,48 +79,47 @@ int main() {
 	return 0;
 }
 
-void addCont(PhoneBook PhBook[], int& num) {
-	PhoneBook* Phone =  new PhoneBook[num + 1];
+PhoneBook* addCont(PhoneBook PhBook[], int num) {
+	PhoneBook* Phone =  new PhoneBook[num++];
 	char buffer[100];
 
-	for (int i = 0;i < num;i++) {
+	printf("¬ведите ‘»ќ: ");
+	cin.ignore();
+
+	gets_s(buffer);
+
+	Phone[num].set_fullName(buffer);
+
+	printf("¬ведите домашний телефон: ");
+	gets_s(buffer);
+
+	Phone[num].set_homePhone(buffer);
+
+	printf("¬ведите мобильный телефон: ");
+	gets_s(buffer);
+
+	Phone[num].set_mobilePhone(buffer);
+
+	printf("¬ведите рабочий телефон: ");
+	gets_s(buffer);
+
+	Phone[num].set_workPhone(buffer);
+
+	printf("¬ведите доп. информацию: ");
+	gets_s(buffer);
+
+	Phone[num].set_Information(buffer);
+
+	for (int i = 0;i < num - 1;i++) {
 		Phone[i].set_fullName(PhBook[i].get_fullName());
 		Phone[i].set_homePhone(PhBook[i].get_homePhone());
 		Phone[i].set_Information(PhBook[i].get_Information());
 		Phone[i].set_mobilePhone(PhBook[i].get_mobilePhone());
 		Phone[i].set_workPhone(PhBook[i].get_workPhone());
 	}
-
-	num++;
-
-	printf( "¬ведите ‘»ќ: ");
-	gets_s(buffer);
-
-	Phone[num].set_fullName(buffer);
-
-	printf("\n¬ведите домашний телефон: ");
-	gets_s(buffer);
-
-	Phone[num].set_homePhone(buffer);
-
-	printf("\n¬ведите мобильный телефон: ");
-	gets_s(buffer);
-
-	Phone[num].set_mobilePhone(buffer);
-
-	printf("\n¬ведите рабочий телефон: ");
-	gets_s(buffer);
-
-	Phone[num].set_workPhone(buffer);
-
-	printf("\n¬ведите доп. информацию: ");
-	gets_s(buffer);
-
-	Phone[num].set_Information(buffer);
-
 	delete[] PhBook;
 
-	PhBook = Phone;
+	return Phone;
 }
 
 PhoneBook* creat(int num) {
@@ -159,7 +160,7 @@ PhoneBook* creat(int num) {
 	return Phone;
 }
 
-void delCon(PhoneBook PhBook[], int& num) {
+PhoneBook* delCon(PhoneBook PhBook[], int& num) {
 	PhoneBook* Phone = new PhoneBook[num--];
 
 	for (int i = 0;i < num;i++) {
@@ -172,7 +173,7 @@ void delCon(PhoneBook PhBook[], int& num) {
 
 	delete[] PhBook;
 
-	PhBook = Phone;
+	return Phone;
 }
 
 void display(PhoneBook PhBook[], int& num) {
